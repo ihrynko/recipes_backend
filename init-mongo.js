@@ -1,10 +1,10 @@
-db.createUser({
-  user: "admin",
-  pwd: "password",
-  roles: [
-    {
-      role: "readWrite",
-      db: "recipes",
-    },
-  ],
-});
+// db.createUser({
+//   user: "admin",
+//   pwd: "password",
+//   roles: [
+//     {
+//       role: "readWrite",
+//       db: "recipes",
+//     },
+//   ],
+// });

@@ -5,8 +5,9 @@ import cors from 'cors';
 
 import router from "./routes";
 import { formatErrorResponse } from "./services/http.service";
-
-const { PORT = 80, MONGO_URI } = process.env;
+import * as dotenv from 'dotenv';
+dotenv.config()
+const { PORT=80 , MONGO_URI } = process.env;
 const app = express();
 
 app.use(express.urlencoded());
@@ -15,8 +16,8 @@ app.use(cors());
 
 app.use("/api/v1", router);
 
-app.use("*", (_req: Request, res: Response) => {
-  return formatErrorResponse(res, { message: "Not found" }, 404);
+app.use("*", (req: Request, res: Response) => {
+  return formatErrorResponse(res, { message: "Not found" });
 });
 
 async function main() {

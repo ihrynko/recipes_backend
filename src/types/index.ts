@@ -1,26 +1,26 @@
 import { Document } from 'mongoose';
 
-export type Ingredients = {
+export type TIngredients = {
     ingredient: string;
     amount: number;
     unit: string;
 };
 
-export type Recipe = {
+export type TRecipe = {
   _id?: string;
     title: string;
     description: string;
     imageUrl: string;
     timeInMins: number;
-    category: Category;
+    category: TCategory;
     user?: TUser;
     createdAt?: Date;
     updatedAt?: Date;
-    ingredients: Array<Ingredients>;
+    ingredients: Array<TIngredients>;
     instructions: Array<string>;
 };
 
-export type Category = {
+export type TCategory = {
     _id?: string;
     name: string;
     description?: string;

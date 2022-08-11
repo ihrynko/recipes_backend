@@ -1,4 +1,5 @@
 import express from 'express';
+// import pagination from '../middlewares/pagination.middleware';
 import RecipeController from '../controllers/recipe.controller';
 import RecipeService from '../services/recipe.service'
 
@@ -7,8 +8,8 @@ const recipeService = new RecipeService();
 const recipeController = new RecipeController(recipeService);
 
 recipeRouter.get(
-  '/',
-  recipeController.getAllRecipes.bind(recipeController)
+  '/:category',
+  recipeController.getAllRecipesInCategory.bind(recipeController)
 );
 recipeRouter.get(
   '/:id',
@@ -18,17 +19,17 @@ recipeRouter.post(
   '/',
   recipeController.createRecipe.bind(recipeController)
 );
-recipeRouter.patch(
-  '/:id',
-  recipeController.updateRecipe.bind(recipeController)
-);
+// recipeRouter.patch(
+//   '/:id',
+//   recipeController.updateRecipe.bind(recipeController)
+// );
 recipeRouter.delete(
   '/:id',
   recipeController.deleteRecipeById.bind(recipeController)
 );
 recipeRouter.get(
   '/search/:query',
-  recipeController.deleteRecipeById.bind(recipeController)
+  recipeController.getRecipesBySearch.bind(recipeController)
 );
 
 export default recipeRouter;

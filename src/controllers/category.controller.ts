@@ -1,12 +1,16 @@
 import { Request, Response } from 'express';
 import { formatErrorResponse, formatSuccessResponse } from '../services/http.service';
 import CategoryService from '../services/category.service';
+const {
+  categorySchema
+} = require("../middlewares/validation.middleware");
 
 class CategoryController {
   constructor(public categoryService: CategoryService = new CategoryService()) {}
 
 async createCategory(req: Request, res: Response) {
-    try {
+  try {
+      await categorySchema.validate(req.body);
       const category = await this.categoryService.createCategory(req.body);
       return formatSuccessResponse(res, category);
     } catch (error) {
@@ -14,7 +18,7 @@ async createCategory(req: Request, res: Response) {
     }
   }
 
-  async getCategories(_req: Request, res: Response) {
+  async getCategories(req: Request, res: Response) {
     try {
       const category = await this.categoryService.getCategories();
       return formatSuccessResponse(res, category);
@@ -23,14 +27,7 @@ async createCategory(req: Request, res: Response) {
     }
   }
 
-   async getCategoryById(req: Request, res: Response) {
-    try {
-      const category = await this.categoryService.getCategoryById(req.params.id);
-      return formatSuccessResponse(res, category);
-    } catch (error) {
-      return formatErrorResponse(res, error);
-    }
-  }
+
     
 
     async deleteCategoryById(req: Request, res: Response) {
@@ -41,23 +38,15 @@ async createCategory(req: Request, res: Response) {
       return formatErrorResponse(res, error);
     }
       }
-  //     async getRecepiesCategory(req: Request, res: Response) {
-  //   try {
-  //     const category = await this.categoryService.getRecepiesCategory(req.params.category);
-  //     return formatSuccessResponse(res, category);
-  //   } catch (error) {
-  //     return formatErrorResponse(res, error);
-  //   }
-  //     }
-    
-  //    async getRecipeInCategory(req: Request, res: Response) {
-  //   try {
-  //     const category = await this.categoryService.getRecipeInCategory(req.params.categoryName, req.params.query);
-  //     return formatSuccessResponse(res, category);
-  //   } catch (error) {
-  //     return formatErrorResponse(res, error);
-  //   }
-  // }
+
+    async getCategoriesBySearch(req: Request, res: Response) {
+    try {
+      const recipe = await this.categoryService.getCategoriesBySearch(req.params.query);
+      return formatSuccessResponse(res, recipe);
+    } catch (error) {
+      return formatErrorResponse(res, error);
+    }
+  }
 }
 
 export default CategoryController;

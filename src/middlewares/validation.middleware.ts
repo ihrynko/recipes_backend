@@ -1,4 +1,4 @@
-import yup from "yup";
+import * as yup from "yup";
 const recipeSchema = yup
   .object()
   .noUnknown()
@@ -16,4 +16,13 @@ const recipeSchema = yup
     instructions: yup.array().of(yup.string()).required(),
   });
 
-module.exports = { recipeSchema };
+  const categorySchema = yup
+  .object()
+  .noUnknown()
+  .shape({
+    name: yup.string().required(),
+    description: yup.string(),
+    image:yup.string().required(),
+  });
+
+module.exports = { recipeSchema, categorySchema };

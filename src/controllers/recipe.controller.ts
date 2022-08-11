@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
 import { formatErrorResponse, formatSuccessResponse } from '../services/http.service';
 import RecipeService from '../services/recipe.service';
-// const {
-//   recipeSchema,
-// } = require("../middlewares/validation.middleware");
+const {
+  recipeSchema,
+} = require("../middlewares/validation.middleware");
 
 class RecipeController {
   constructor(public recipeService: RecipeService = new RecipeService()) {}
 
-  async getAllRecipes(_req: Request, res: Response) {
+  async getAllRecipesInCategory(req: Request, res: Response) {
     try {
-      const recipes = await this.recipeService.getAllRecipes();
+      const recipes = await this.recipeService.getRecipesInCategory(req.params.category)
     return formatSuccessResponse(res,  recipes );
     } catch (error) {
       return formatErrorResponse(res, error);
@@ -19,7 +19,7 @@ class RecipeController {
     
     async createRecipe(req: Request, res: Response) {
     try {
-    //  await recipeSchema.validate(req.body);
+     await recipeSchema.validate(req.body);
       const newRecipe = await this.recipeService.createRecipe(req.body, req.body.category);
       return formatSuccessResponse(res, newRecipe);
     } catch (error) {
@@ -38,7 +38,7 @@ class RecipeController {
     
     async updateRecipe(req: Request, res: Response) {
     try {
-    // await recipeSchema.validate(req.body);
+    await recipeSchema.validate(req.body);
       const recipe = await this.recipeService.updateRecipe(req.body, req.params.id);
       return formatSuccessResponse(res, recipe);
     } catch (error) {

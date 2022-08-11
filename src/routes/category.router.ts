@@ -10,10 +10,7 @@ categoryRouter.get(
   '/',
   categoryController.getCategories.bind(categoryController)
 );
-categoryRouter.get(
-  '/:id',
-  categoryController.getCategoryById.bind(categoryController)
-);
+
 categoryRouter.post(
   '/',
   categoryController.createCategory.bind(categoryController)
@@ -22,13 +19,10 @@ categoryRouter.delete(
   '/:id',
   categoryController.deleteCategoryById.bind(categoryController)
 );
-// categoryRouter.get(
-//   '/:category',
-//   categoryController.getRecepiesCategory.bind(categoryController)
-// );
-// categoryRouter.get(
-//   '/:categoryName/:query',
-//   categoryController.getRecipeInCategory.bind(categoryController)
-// );
+categoryRouter.get(
+  '/search/:query',
+  categoryController.getCategoriesBySearch.bind(categoryController)
+);
+
 
 export default categoryRouter;

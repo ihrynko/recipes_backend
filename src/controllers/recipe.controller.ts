@@ -20,7 +20,7 @@ class RecipeController {
     async createRecipe(req: Request, res: Response) {
     try {
     //  await recipeSchema.validate(req.body);
-      const newRecipe = await this.recipeService.createRecipe(req.body);
+      const newRecipe = await this.recipeService.createRecipe(req.body, req.body.category);
       return formatSuccessResponse(res, newRecipe);
     } catch (error) {
       return formatErrorResponse(res, error);

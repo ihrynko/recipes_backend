@@ -1,12 +1,13 @@
-
 import express from "express";
-
+// import accessTokenMiddleware from '../middlewares/accessToken.middleware';
 import category from "./category.router";
-import recipe from "./recipe.router";
+import recipes from "./recipe.router";
+// import auth from './auth.router';
 
 const router = express.Router();
 
-router.use("/category", category);
-router.use("/recipes", recipe);
+// router.use("/auth", accessTokenMiddleware, auth);
+router.use("/categories", category);
+router.use("/recipes", recipes);
 
 export default router;

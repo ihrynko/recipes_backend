@@ -10,8 +10,10 @@ class RecipeController {
 
   async getAllRecipesInCategory(req: Request, res: Response) {
     try {
-      const recipes = await this.recipeService.getRecipesInCategory(req.params.category)
-    return formatSuccessResponse(res,  recipes );
+      if (req.context && req.context.page && req.context.limit) {
+      const recipes = await this.recipeService.getRecipesInCategory(req.params.category, req.context.page, req.context.limit)
+    return formatSuccessResponse(res,  recipes);
+      }
     } catch (error) {
       return formatErrorResponse(res, error);
     }

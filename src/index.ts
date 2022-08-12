@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import express from "express";
 import mongoose from "mongoose";
 import cors from 'cors';
-import { Context } from './types';
 import router from "./routes";
+import { Context } from "./types";
+
 
 import * as dotenv from 'dotenv';
 dotenv.config()
@@ -15,7 +16,7 @@ declare global {
   namespace Express {
     interface Request {
       context?: Context;
-      
+    
     }
   }
 }
@@ -27,7 +28,7 @@ app.use(cors());
 
 app.use("/api/v1", router);
 
-app.use("*", (_req: Request, res: Response) => {
+app.use("*", (req: Request, res: Response) => {
    res.status(404).json({
     message: 'Not found',
   });

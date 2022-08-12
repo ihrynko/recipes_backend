@@ -45,4 +45,6 @@ export type TUserInput = {
 export type Context = {
   token?: string;
   user?: Document<unknown, any, TUser> & TUser;
+  page?: number;
+  limit?: number;
 };

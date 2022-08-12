@@ -5,8 +5,9 @@ import {TCategory} from '../types/index'
 
 class CategoryService {
 
-  async getCategories() {
-    const categories = await CategoryModel.find();
+  async getCategories( page: number,
+    limit: number) {
+    const categories = await CategoryModel.find().skip(page).limit(limit);;
     if (!categories) {
       throw new Error('Categories not found');
     }

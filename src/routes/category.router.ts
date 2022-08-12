@@ -1,4 +1,5 @@
 import express from 'express';
+import pagination from '../middlewares/pagination.middleware';
 import CategoryController from '../controllers/category.controller';
 import CategoryService from '../services/category.service'
 
@@ -8,6 +9,7 @@ const categoryController = new CategoryController(categoryService);
 
 categoryRouter.get(
   '/',
+  pagination,
   categoryController.getCategories.bind(categoryController)
 );
 

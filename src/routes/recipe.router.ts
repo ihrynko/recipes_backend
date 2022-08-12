@@ -1,5 +1,5 @@
 import express from 'express';
-// import pagination from '../middlewares/pagination.middleware';
+import pagination from '../middlewares/pagination.middleware';
 import RecipeController from '../controllers/recipe.controller';
 import RecipeService from '../services/recipe.service'
 
@@ -9,6 +9,7 @@ const recipeController = new RecipeController(recipeService);
 
 recipeRouter.get(
   '/:category',
+  pagination,
   recipeController.getAllRecipesInCategory.bind(recipeController)
 );
 recipeRouter.get(

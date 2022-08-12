@@ -20,8 +20,10 @@ async createCategory(req: Request, res: Response) {
 
   async getCategories(req: Request, res: Response) {
     try {
-      const category = await this.categoryService.getCategories();
-      return formatSuccessResponse(res, category);
+       if (req.context && req.context.page && req.context.limit) {
+      const categories = await this.categoryService.getCategories(req.context.page, req.context.limit)
+    return formatSuccessResponse(res,  categories);
+      }
     } catch (error) {
       return formatErrorResponse(res, error);
     }

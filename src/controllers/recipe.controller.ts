@@ -38,15 +38,15 @@ class RecipeController {
     }
     }
     
-    async updateRecipe(req: Request, res: Response) {
-    try {
-    await recipeSchema.validate(req.body);
-      const recipe = await this.recipeService.updateRecipe(req.body, req.params.id);
-      return formatSuccessResponse(res, recipe);
-    } catch (error) {
-      return formatErrorResponse(res, error);
-    }
-    }
+    // async updateRecipe(req: Request, res: Response) {
+    // try {
+    // await recipeSchema.validate(req.body);
+    //   const recipe = await this.recipeService.updateRecipe(req.body, req.params.id);
+    //   return formatSuccessResponse(res, recipe);
+    // } catch (error) {
+    //   return formatErrorResponse(res, error);
+    // }
+    // }
     
     async deleteRecipeById(req: Request, res: Response) {
     try {

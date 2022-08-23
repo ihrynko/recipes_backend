@@ -33,13 +33,13 @@ class RecipeService {
        return singleRecipe;
 };
 
-     async updateRecipe(data: TRecipe, recipeId: string) {
-      const recipe = await RecipeModel.findById({ _id: recipeId });
-      const model = new RecipeModel(recipe);
-      model.set(data);
-      model.save();
-      return model;
-  }
+//      async updateRecipe(data: TRecipe, recipeId: string) {
+//       const recipe = await RecipeModel.findById({ _id: recipeId });
+//       const model = new RecipeModel(recipe);
+//       model.set(data);
+//       model.save();
+//       return model;
+//   }
     
      async deleteRecipeById  (recipeId: string) {
      const singleRecipe = await RecipeModel.deleteOne({ _id: recipeId });

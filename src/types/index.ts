@@ -7,7 +7,7 @@ export type TIngredients = {
 };
 
 export type TRecipe = {
-  _id?: string;
+    _id?: string;
     title: string;
     description: string;
     imageUrl: string;

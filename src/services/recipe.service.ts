@@ -15,7 +15,7 @@ class RecipeService {
     
     
      async getRecipesInCategory (
-        category: String,
+        category: string,
         page: number,
         limit: number
      ) {
@@ -25,7 +25,7 @@ class RecipeService {
         }
     };
 
-       async getRecipeById (recipeId: string) {
+      async getRecipeById (recipeId: string) {
        const singleRecipe = await RecipeModel.findById({ _id: recipeId }).populate('category');
        if (!singleRecipe) {
        throw new Error("Can't find item by determine id");

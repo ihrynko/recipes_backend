@@ -29,6 +29,18 @@ async createCategory(req: Request, res: Response) {
     }
   }
 
+   async getAllRecipesInCategory(req: Request, res: Response) {
+    try {
+      // if (req.context && req.context.page && req.context.limit) {
+      const recipes = await this.categoryService.getRecipesInCategory(req.params.category)
+      // const recipes = await this.recipeService.getRecipesInCategory(req.params.category, req.context.page, req.context.limit)
+
+    return formatSuccessResponse(res,  recipes);
+      // }
+    } catch (error) {
+      return formatErrorResponse(res, error);
+    }
+  }
 
     
 

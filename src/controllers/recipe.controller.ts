@@ -8,16 +8,6 @@ const {
 class RecipeController {
   constructor(public recipeService: RecipeService = new RecipeService()) {}
 
-  async getAllRecipesInCategory(req: Request, res: Response) {
-    try {
-      if (req.context && req.context.page && req.context.limit) {
-      const recipes = await this.recipeService.getRecipesInCategory(req.params.category, req.context.page, req.context.limit)
-    return formatSuccessResponse(res,  recipes);
-      }
-    } catch (error) {
-      return formatErrorResponse(res, error);
-    }
-  }
     
     async createRecipe(req: Request, res: Response) {
     try {

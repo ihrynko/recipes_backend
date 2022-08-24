@@ -15,15 +15,16 @@ class RecipeService {
     
     
      async getRecipesInCategory (
-        category: string,
-        page: number,
-        limit: number
+        category: string
+      //   page: number,
+      //   limit: number
      ) {
-        const recipes = await RecipeModel.find({ category: category }).skip(page).limit(limit);
+        const recipes = await RecipeModel.find({ category: category });
         if (recipes) {
         return recipes;
         }
-    };
+   };
+   
 
       async getRecipeById (recipeId: string) {
        const singleRecipe = await RecipeModel.findById({ _id: recipeId }).populate('category');

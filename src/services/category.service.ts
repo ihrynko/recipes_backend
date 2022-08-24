@@ -1,4 +1,5 @@
 import { Number } from 'mongoose';
+import RecipeModel from '../models/recipe.model';
 import CategoryModel from '../models/category.model';
 import {TCategory} from '../types/index'
 
@@ -13,6 +14,17 @@ class CategoryService {
     }
     return categories;
   };
+
+      async getRecipesInCategory (
+        category: string
+      //   page: number,
+      //   limit: number
+     ) {
+        const recipes = await RecipeModel.find({ category: category });
+        if (recipes) {
+        return recipes;
+        }
+   };
 
   async createCategory(data: TCategory) {
     const category = new CategoryModel(data);

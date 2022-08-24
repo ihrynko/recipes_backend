@@ -8,11 +8,6 @@ const recipeService = new RecipeService();
 const recipeController = new RecipeController(recipeService);
 
 recipeRouter.get(
-  '/:category',
-  pagination,
-  recipeController.getAllRecipesInCategory.bind(recipeController)
-);
-recipeRouter.get(
   '/:id',
   recipeController.getRecipeById.bind(recipeController)
 );

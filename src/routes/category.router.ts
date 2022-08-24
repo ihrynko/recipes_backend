@@ -2,6 +2,8 @@ import express from 'express';
 import pagination from '../middlewares/pagination.middleware';
 import CategoryController from '../controllers/category.controller';
 import CategoryService from '../services/category.service'
+import RecipeController from '../controllers/recipe.controller';
+import RecipeService from '../services/recipe.service'
 
 const categoryRouter = express.Router();
 const categoryService = new CategoryService();
@@ -11,6 +13,12 @@ categoryRouter.get(
   '/',
   pagination,
   categoryController.getCategories.bind(categoryController)
+);
+
+categoryRouter.get(
+  '/:category',
+  // pagination,
+  categoryController.getAllRecipesInCategory.bind(categoryController)
 );
 
 categoryRouter.post(

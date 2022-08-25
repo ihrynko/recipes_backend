@@ -20,7 +20,7 @@ class CategoryService {
       //   page: number,
       //   limit: number
      ) {
-        const recipes = await RecipeModel.find({ category: category });
+        const recipes = await RecipeModel.find({ category: category }).populate('category');
         if (recipes) {
         return recipes;
         }

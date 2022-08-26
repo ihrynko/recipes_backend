@@ -7,13 +7,16 @@ const recipeSchema = yup
     description: yup.string().required(),
     imageUrl:yup.string().required(),
     timeInMins: yup.number().required(),
-    category: yup.array().of(yup.string()),
+    category: yup.string().required(),
     ingredients: yup.array().of(yup.object().shape({
-    ingredient: yup.string(),
-    amount: yup.number(),
-          
+      ingredient: yup.string().required(),
+      amount: yup.number().required(),
+      unit: yup.string().required(),
     })).required(),
-    instructions: yup.array().of(yup.string()).required(),
+    instructions: yup.array().of(yup.object().shape({
+      order: yup.number(),
+      value: yup.string().required(),
+    })).required(),
   });
 
   const categorySchema = yup

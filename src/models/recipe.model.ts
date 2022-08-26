@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { TRecipe, TIngredients } from '../types';
+import { TRecipe, TIngredients, TInstruction } from '../types';
 
 const ingridientsSchema = new Schema<TIngredients>(
   {
@@ -7,6 +7,13 @@ const ingridientsSchema = new Schema<TIngredients>(
     amount: { type: Number, required: true },
     unit: { type: String, required: true },
 
+  }
+);
+
+const instructionsSchema = new Schema<TInstruction>(
+  {
+    value: { type: String, required: true },
+    order: { type: Number, required: false },
   }
 );
 
@@ -23,7 +30,7 @@ const recipeSchema = new Schema<TRecipe>(
     required: true,
     },
   ingredients:  { type: [ingridientsSchema], required: true },
-  instructions: { type: [String], required: true },
+  instructions: { type: [instructionsSchema], required: true },
 },
 { timestamps: true }
 );

@@ -17,7 +17,7 @@ export type TRecipe = {
     createdAt?: Date;
     updatedAt?: Date;
     ingredients: Array<TIngredients>;
-    instructions: Array<string>;
+    instructions: TInstruction[];
 };
 
 export type TCategory = {
@@ -27,6 +27,15 @@ export type TCategory = {
     user?: TUser;
     image?: string;
 };
+
+export type TInstruction = {
+  _id?: string;
+  order?: number;
+  value: string;
+}
+
+
+
 
 export type TUser = {
     _id?: string;

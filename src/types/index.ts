@@ -12,7 +12,6 @@ export type TRecipe = {
   title: string;
   description: string;
   imageUrl: string;
-  timeInMins: number;
   category: TCategory;
   createdAt?: Date;
   updatedAt?: Date;
@@ -30,4 +29,8 @@ export type TInstruction = {
   _id?: string;
   order?: number;
   value: string;
+};
+
+export type TQuery = {
+  search?: string;
 };

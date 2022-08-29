@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 import { TRecipe, TIngredients, TInstruction } from "../types";
 
 const ingridientsSchema = new Schema<TIngredients>({
@@ -17,7 +17,6 @@ const recipeSchema = new Schema<TRecipe>(
     title: { type: String, required: true },
     description: { type: String, required: true },
     imageUrl: { type: String, required: true },
-    timeInMins: { type: Number, required: true },
     category: {
       type: Schema.Types.ObjectId,
       ref: "Category",

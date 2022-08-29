@@ -23,7 +23,7 @@ class CategoryController {
 
   async getCategories(req: Request, res: Response) {
     try {
-      const categories = await this.categoryService.getCategories();
+      const categories = await this.categoryService.getCategories(req.query);
       return formatSuccessResponse(res, categories);
     } catch (error) {
       return formatErrorResponse(res, error);
@@ -32,11 +32,11 @@ class CategoryController {
 
   async getAllRecipesInCategory(req: Request, res: Response) {
     try {
-      const recipes = await this.categoryService.getRecipesInCategory(
-        req.params.category
+      const recipeList = await this.categoryService.getRecipesInCategory(
+        req.params.category,
+        req.query
       );
-
-      return formatSuccessResponse(res, recipes);
+      return formatSuccessResponse(res, recipeList);
     } catch (error) {
       return formatErrorResponse(res, error);
     }
@@ -48,6 +48,17 @@ class CategoryController {
         req.params.id
       );
       return formatSuccessResponse(res, category);
+    } catch (error) {
+      return formatErrorResponse(res, error);
+    }
+  }
+
+  async getCategoriesBySearch(req: Request, res: Response) {
+    try {
+      const recipe = await this.categoryService.getCategoriesBySearch(
+        req.params.query
+      );
+      return formatSuccessResponse(res, recipe);
     } catch (error) {
       return formatErrorResponse(res, error);
     }

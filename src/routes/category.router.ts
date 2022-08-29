@@ -24,5 +24,9 @@ categoryRouter.delete(
   "/:id",
   categoryController.deleteCategoryById.bind(categoryController)
 );
+categoryRouter.get(
+  "/search/:query",
+  categoryController.getCategoriesBySearch.bind(categoryController)
+);
 
 export default categoryRouter;

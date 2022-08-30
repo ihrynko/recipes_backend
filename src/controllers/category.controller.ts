@@ -52,17 +52,6 @@ class CategoryController {
       return formatErrorResponse(res, error);
     }
   }
-
-  async getCategoriesBySearch(req: Request, res: Response) {
-    try {
-      const recipe = await this.categoryService.getCategoriesBySearch(
-        req.params.query
-      );
-      return formatSuccessResponse(res, recipe);
-    } catch (error) {
-      return formatErrorResponse(res, error);
-    }
-  }
 }
 
 export default CategoryController;

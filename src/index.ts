@@ -5,10 +5,19 @@ import cors from "cors";
 import router from "./routes";
 
 import * as dotenv from "dotenv";
+import { Context } from "types";
 dotenv.config();
 
 const { PORT = 80, MONGO_URI } = process.env;
 const app = express();
+
+declare global {
+  namespace Express {
+    interface Request {
+      context?: Context;
+    }
+  }
+}
 
 app.use(express.urlencoded());
 app.use(express.json());

@@ -3,6 +3,7 @@ import { Document } from "mongoose";
 export type TCategory = {
   _id?: string;
   name: string;
+  user?: TUser;
   description?: string;
   image?: string;
 };
@@ -13,6 +14,7 @@ export type TRecipe = {
   description: string;
   imageUrl: string;
   category: TCategory;
+  user?: TUser;
   createdAt?: Date;
   updatedAt?: Date;
   ingredients: Array<TIngredients>;
@@ -33,4 +35,25 @@ export type TInstruction = {
 
 export type TQuery = {
   search?: string;
+};
+
+export type TUser = {
+  _id?: string;
+  username: string;
+  email: string;
+  password: string;
+  token?: string;
+};
+
+export type TUserInput = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+export type Context = {
+  token?: string;
+  user?: Document<unknown, any, TUser> & TUser;
+  page?: number;
+  limit?: number;
 };
